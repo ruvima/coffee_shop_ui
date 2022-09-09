@@ -32,7 +32,10 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(top: 20, left: 10, bottom: 20),
                 child: Text(
                   'Find the best\ncoffe for you',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'BebasNeue'),
                 ),
               ),
               TextField(
@@ -43,6 +46,8 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     borderSide: BorderSide(color: Color(0xFF0C0F14), width: 2),
                   ),
+                  constraints:
+                      const BoxConstraints.tightFor(width: 327, height: 54),
                   labelText: 'Find Your Cofee...',
                   labelStyle: TextStyle(color: Colors.grey.shade600),
                   prefixIcon: Icon(
