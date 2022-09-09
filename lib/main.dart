@@ -1,3 +1,6 @@
+import 'package:coffee_shop_ui/routes/route.dart';
+import 'package:coffee_shop_ui/screen/details_screen.dart';
+import 'package:coffee_shop_ui/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -8,15 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Coffee Shop Ui',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Coffee Shop Ui'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Coffee Shop Ui',
+        theme: ThemeData.dark(),
+        initialRoute: Routes.homeScreen,
+        routes: {
+          Routes.homeScreen: (_) => const HomeScreen(),
+          Routes.detailsScreen: (_) => const DetailsScreen(),
+        });
   }
 }
