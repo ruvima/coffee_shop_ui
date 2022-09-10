@@ -18,7 +18,6 @@ class CoffeeSpecial extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Container(
-          width: 320,
           height: 150,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),

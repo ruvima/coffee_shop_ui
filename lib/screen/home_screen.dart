@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: const Color(0xFF0C0F14),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -36,6 +37,33 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Shopping',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.heart_broken),
+            label: 'Heart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notification',
+          ),
+        ],
+        elevation: 0,
+        unselectedItemColor: Colors.grey.shade600.withOpacity(0.5),
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        currentIndex: 0,
+        selectedItemColor: Colors.orange,
+        onTap: (value) {},
       ),
     );
   }

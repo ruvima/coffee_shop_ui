@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Coffee Shop Ui',
-        theme: ThemeData.dark(),
+        theme: ThemeData.dark().copyWith(canvasColor: Colors.transparent),
         initialRoute: Routes.homeScreen,
         routes: {
           Routes.homeScreen: (_) => const HomeScreen(),
