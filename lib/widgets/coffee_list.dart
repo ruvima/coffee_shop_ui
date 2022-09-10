@@ -1,4 +1,5 @@
 import 'package:coffee_shop_ui/provider/coffee_list_provider.dart';
+import 'package:coffee_shop_ui/utils/coffee_info_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,7 +10,6 @@ class CoffeeList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List coffeeList = ['Cappuccino', 'Espresso', 'Latte', 'Flat white'];
     final selectedCofee = ref.watch(selectedCoffeeProvider);
 
     return Padding(

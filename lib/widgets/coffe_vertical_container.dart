@@ -1,6 +1,7 @@
-import 'dart:ui';
-
+import 'package:coffee_shop_ui/provider/coffee_list_provider.dart';
+import 'package:coffee_shop_ui/utils/coffee_info_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CoffeVerticalContainer extends StatelessWidget {
   const CoffeVerticalContainer({
@@ -9,30 +10,41 @@ class CoffeVerticalContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = (MediaQuery.of(context).size);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CoffeeBox(size: size),
-        //////////////
-        CoffeeBox(size: size),
+      children: const [
+        CoffeeBox(
+          num: 0,
+          description: 'With Oat Milk',
+          price: 4.20,
+        ),
+        CoffeeBox(
+          num: 1,
+          description: 'With Oat Chocolat',
+          price: 3.14,
+        ),
       ],
     );
   }
 }
 
-class CoffeeBox extends StatelessWidget {
+class CoffeeBox extends ConsumerWidget {
   const CoffeeBox({
+    required this.num,
+    required this.price,
+    required this.description,
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
-
+  final int num;
+  final double price;
+  final String description;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedCofee = ref.watch(selectedCoffeeProvider);
+    final size = (MediaQuery.of(context).size);
+
     return Container(
-      width: size.width / 2.2,
+      width: size.width / 2.3,
       height: 220,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -41,36 +53,22 @@ class CoffeeBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.all(10),
-            height: 120,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.red,
-              image: const DecorationImage(
-                scale: 50,
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  'assets/coffee0_0.jpg',
-                ),
-              ),
-            ),
-          ),
+          CoffeeImage(num: num, index: selectedCofee.selectedIndex),
           Padding(
             padding: const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 5),
             child: Text(
-              'Cappuccino',
-              style: TextStyle(
+              coffeeList[selectedCofee.selectedIndex],
+              style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Roboto-Regular',
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 5),
-            child: const Text(
-              'With Oat Milk',
-              style: TextStyle(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 5),
+            child: Text(
+              description,
+              style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Roboto-Regular',
                   fontSize: 10),
@@ -83,11 +81,11 @@ class CoffeeBox extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
+                    const Text(
                       '\$ ',
                       style: TextStyle(color: Colors.orange),
                     ),
-                    Text('4.20'),
+                    Text(price.toString()),
                   ],
                 ),
                 Container(
@@ -96,7 +94,7 @@ class CoffeeBox extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.orange),
-                    child: Icon(
+                    child: const Icon(
                       Icons.add,
                       size: 15,
                     ))
@@ -104,6 +102,33 @@ class CoffeeBox extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class CoffeeImage extends StatelessWidget {
+  const CoffeeImage({
+    Key? key,
+    required this.index,
+    required this.num,
+  }) : super(key: key);
+  final int index;
+  final int num;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      height: 120,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        image: DecorationImage(
+          scale: 50,
+          fit: BoxFit.cover,
+          image: AssetImage(
+            'assets/coffee${num}_$index.jpg',
+          ),
+        ),
       ),
     );
   }
