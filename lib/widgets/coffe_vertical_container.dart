@@ -57,6 +57,7 @@ class CoffeeBox extends ConsumerWidget {
             num: num,
             index: selectedCofee.selectedIndex,
             height: 120,
+            star: true,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 5),
@@ -116,6 +117,7 @@ class CoffeeImage extends StatelessWidget {
       {Key? key,
       required this.index,
       required this.num,
+      this.star = false,
       this.width,
       this.height})
       : super(key: key);
@@ -123,22 +125,70 @@ class CoffeeImage extends StatelessWidget {
   final int num;
   final double? height;
   final double? width;
+  final bool star;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          scale: 50,
-          fit: BoxFit.cover,
-          image: AssetImage(
-            'assets/coffee${num}_$index.jpg',
-          ),
+        margin: const EdgeInsets.all(10),
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
         ),
-      ),
-    );
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Stack(
+              alignment: AlignmentDirectional.topEnd,
+              children: [
+                Image(
+                  image: AssetImage(
+                    'assets/coffee${num}_$index.jpg',
+                  ),
+                  width: constraints.maxWidth,
+                  height: constraints.maxHeight,
+                  fit: BoxFit.cover,
+                ),
+                star
+                    ? Container(
+                        height: 20,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(20)),
+                          color: Colors.grey.shade900.withOpacity(0.7),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(
+                              Icons.star,
+                              size: 12,
+                              color: Colors.orange,
+                            ),
+                            Text(
+                              ' 3.5',
+                              style:
+                                  TextStyle(fontFamily: 'Roboto', fontSize: 12),
+                            )
+                          ],
+                        ),
+                      )
+                    : SizedBox.shrink(),
+              ],
+            );
+          },
+        ));
   }
 }
+
+//  Container(
+//             alignment: Alignment.topRight,
+//             height: 20,
+//             width: 50,
+//             decoration: BoxDecoration(
+//               borderRadius:
+//                   const BorderRadius.only(bottomLeft: Radius.circular(20)),
+//               color: Colors.grey.shade600.withOpacity(0.2),
+//             ),
+//             child: Icon(Icons.star),
+//           ),
