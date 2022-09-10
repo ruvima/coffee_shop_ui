@@ -27,10 +27,10 @@ flutter:
   assets:
     - assets/
   fonts:
-    - family: BebasNeue
+    - family: Roboto-Regular
       fonts:
-        - asset: fonts/BebasNeue-Regular.ttf
-          style: normal
+        - asset: fonts/Roboto-Regular.ttf
+          weight: 400
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
