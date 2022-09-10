@@ -53,7 +53,11 @@ class CoffeeBox extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CoffeeImage(num: num, index: selectedCofee.selectedIndex),
+          CoffeeImage(
+            num: num,
+            index: selectedCofee.selectedIndex,
+            height: 120,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 5),
             child: Text(
@@ -108,18 +112,23 @@ class CoffeeBox extends ConsumerWidget {
 }
 
 class CoffeeImage extends StatelessWidget {
-  const CoffeeImage({
-    Key? key,
-    required this.index,
-    required this.num,
-  }) : super(key: key);
+  const CoffeeImage(
+      {Key? key,
+      required this.index,
+      required this.num,
+      this.width,
+      this.height})
+      : super(key: key);
   final int index;
   final int num;
+  final double? height;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      height: 120,
+      height: height,
+      width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(

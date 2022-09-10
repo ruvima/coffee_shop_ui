@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:coffee_shop_ui/widgets/coffe_vertical_container.dart';
 import 'package:coffee_shop_ui/widgets/coffee_list.dart';
-import 'package:flutter/material.dart';
+import 'package:coffee_shop_ui/widgets/coffee_special.dart';
 import 'package:coffee_shop_ui/widgets/appbar_icon.dart';
 import 'package:coffee_shop_ui/widgets/search_bar.dart';
 import 'package:coffee_shop_ui/widgets/title_text.dart';
@@ -29,6 +31,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 CoffeVerticalContainer(),
                 SizedBox(height: 20),
+                CoffeeSpecial(),
               ],
             ),
           ),
