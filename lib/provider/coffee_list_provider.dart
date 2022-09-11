@@ -24,3 +24,27 @@ class SelectedCoffee extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+final selectedSizeProvider = ChangeNotifierProvider<SelectedSize>(
+  (ref) => SelectedSize(),
+);
+
+class SelectedSize extends ChangeNotifier {
+  bool _isSelected;
+  int _selectedIndex;
+  SelectedSize([this._isSelected = true, this._selectedIndex = 1]);
+
+  bool get isSelected => _isSelected;
+  int get selectedIndex => _selectedIndex;
+
+  void selectedSwitch(int value) {
+    _selectedIndex = value;
+
+    if (selectedIndex == value) {
+      _isSelected = true;
+    } else {
+      _isSelected = false;
+    }
+    notifyListeners();
+  }
+}
