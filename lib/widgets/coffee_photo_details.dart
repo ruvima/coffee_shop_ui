@@ -53,7 +53,8 @@ class CoffeePhotoDetails extends StatelessWidget {
         ),
         Positioned(
           bottom: 0,
-          child: ClipRect(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30),
             child: BackdropFilter(
               filter: ui.ImageFilter.blur(
                 sigmaX: 10.0,

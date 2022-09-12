@@ -14,7 +14,7 @@ class DetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             CoffeePhotoDetails(),
             SizedBox(height: 10),
             CoffeeDescription(),
